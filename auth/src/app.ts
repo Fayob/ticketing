@@ -2,6 +2,7 @@ import express from 'express'
 import 'express-async-errors'
 import { json } from 'body-parser'
 import cookieSession from 'cookie-session'
+import { errorHandler, NotFoundError } from '@fayobtickets/common'
 import { config } from 'dotenv'
 config()
 
@@ -9,8 +10,6 @@ import { currentUserRouter } from './routes/current-user'
 import { signInRouter } from './routes/signin'
 import { signOutRouter } from './routes/signout'
 import { signUpRouter } from './routes/signup'
-import { errorHandler } from './middlewares/error-handler'
-import { NotFoundError } from './errors/not-found'
 
 const app = express()
 app.set('trust proxy', true); // for nginx to recognize the traffick coming as secure
