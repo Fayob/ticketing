@@ -25,7 +25,7 @@ it('fails when an incorrect password is supplied', async () => {
       email: 'rest@rest.com',
       password: 'password'
     })
-    .expect(404)
+    .expect(400)
   
   await request(app)
     .post('/api/users/signin')
@@ -33,7 +33,7 @@ it('fails when an incorrect password is supplied', async () => {
       email: 'rest@rest.com',
       password: 'password'
     })
-    .expect(404)
+    .expect(400)
 
   await request(app)
     .post('/api/users/signin')
@@ -41,7 +41,7 @@ it('fails when an incorrect password is supplied', async () => {
       email: 'test@test.com',
       password: 'qwertyui'
     })
-    .expect(404)
+    .expect(400)
 })
 
 it('returns 200 when the signin details is correct', async () => {
@@ -53,13 +53,13 @@ it('returns 200 when the signin details is correct', async () => {
     })
     .expect(201)
 
-  // const response = await request(app)
-  //   .post('/api/users/signin')
-  //   .send({
-  //     email: 'test@test.com',
-  //     password: 'password'
-  //   })
-  //   .expect(200)
+  const response = await request(app)
+    .post('/api/users/signin')
+    .send({
+      email: 'test@test.com',
+      password: 'password'
+    })
+    .expect(200)
 
-  // expect(response.get('Set-Cookie')).toBeDefined()
+  expect(response.get('Set-Cookie')).toBeDefined()
 })
