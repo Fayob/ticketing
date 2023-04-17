@@ -1,14 +1,14 @@
 import express, { Request, Response } from 'express'
 import { body } from 'express-validator'
 import jwt from 'jsonwebtoken'
-import { BadRequestError, validateRequest} from '@fayobtickets/common'
+import { BadRequestError, validateRequest } from '@fayobtickets/common'
 
 import { User } from '../models/user';
 import { Password } from '../services/password';
 
 const router = express.Router()
 
-router.post('/auth/users/signin', [
+router.post('/api/users/signin', [
     body('email').isEmail().withMessage('Email must be valid'),
     body('password').trim().notEmpty().withMessage('You must supply a password')
   ], validateRequest, async (req: Request, res: Response) => {
